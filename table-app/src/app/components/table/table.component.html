@@ -1,0 +1,28 @@
+<div class="table-container">
+  <!-- Only using table element here for semantics -->
+  <table>
+    <caption>Angular Table App</caption>
+
+    <div class="scrollable">
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns">{{ col }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- For each row... -->
+        <tr *ngFor="let row of rowData">
+          <!-- ...list the values for each column -->
+          <td *ngFor="let col of columns">{{ row[col] }}</td>
+        </tr>
+      </tbody>
+    </div>
+
+    <tfoot>
+      <tr>
+        <th>Row Count: {{ rowData.length }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
