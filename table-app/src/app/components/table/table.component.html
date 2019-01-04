@@ -26,3 +26,16 @@
     </tfoot>
   </table>
 </div>
+
+<hr>
+
+<!-- The Table and Pagination component share the same names for variables to avoid confusion -->
+<app-pagination
+  (goToPage)="goToPage($event)"
+  (previousPage)="goToPrevPage()"
+  (nextPage)="goToNextPage()"
+  [currentPage]="currentPage"
+  [totalRowCount]="totalRowCount"
+  [rowsPerPage]="rowsPerPage"
+  [pagesToShow]="pagesToShow"
+  [isLoading]="isLoading"></app-pagination>

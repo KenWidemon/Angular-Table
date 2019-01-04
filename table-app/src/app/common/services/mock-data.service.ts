@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { MOCK_DATA } from '../constants/mock-data.constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // no need to import in Providers[] in AppModule
 })
 export class MockDataService {
 
@@ -14,6 +14,6 @@ export class MockDataService {
   }
 
   getColumns(data: any): string[] {
-    return Object.keys(data);
+    return Object.keys(data); // just set columns equal to first row's keys
   }
 }

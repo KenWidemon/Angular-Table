@@ -1,0 +1,15 @@
+<div class="pagination">
+  <input
+    #rowCount
+    type="text"
+    value="{{ rowsPerPage }}"
+    size="5"
+    (blur)="adjustRowCount(rowCount.value)"
+    (keyup.enter)="adjustRowCount(rowCount.value)">
+
+  <span>{{ getMin() }} to {{ getMax() }} of {{ totalRowCount }}</span>
+
+  <button (click)="toPreviousPage()" [disabled]="currentPage === 1 || isLoading">&lsaquo;&lsaquo;</button>
+  <button *ngFor="let pageNum of getPages()" (click)="toPage(pageNum)">{{ pageNum }}</button>
+  <button (click)="toNextPage()" [disabled]="onLastPage() || isLoading">&rsaquo;&rsaquo;</button>
+</div>
