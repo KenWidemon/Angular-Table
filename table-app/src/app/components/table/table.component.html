@@ -14,7 +14,10 @@
         <!-- For each row... -->
         <tr *ngFor="let row of paginatedRowData">
           <!-- ...list the values for each column -->
-          <td *ngFor="let col of columns">{{ row[col] }}</td>
+          <td *ngFor="let col of columns" class="row-data">
+            <div *ngIf="col !== 'button'">{{ row[col] }}</div>
+            <div *ngIf="col === 'button'"><button class="row-btn" (click)="postIdAndStatus(row[col])">POST</button></div>
+          </td>
         </tr>
       </tbody>
     </div>

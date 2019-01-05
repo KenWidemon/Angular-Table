@@ -23,6 +23,7 @@ interface MockData {
   date_first: string;
   date_recent: string;
   url: string;
+  [key: string]: any;
 }
 
 @Component({
@@ -50,26 +51,35 @@ export class TableComponent implements OnInit {
     this.getTableData();
   }
 
-  getTableData() {
-    this.isLoading = true;
-    this.mockDataService.getData().subscribe((data: MockData[]) => {
+  async getTableData() {
+    try {
+      this.isLoading = true;
+      const tableData = await this.mockDataService.getData();
+      tableData.map((obj: MockData) => {
+        const button = { id: obj.id, status: obj.status };
+        obj.button = button;
+        return obj;
+      });
+
       // we would only want to retrieve the columns once
       if (!this.columns) {
-        this.columns = this.mockDataService.getColumns(data[0]);
+        this.columns = this.mockDataService.getColumns(tableData[0]);
       }
 
-      this.rowData = data;
+      this.rowData = tableData;
       this.totalRowCount = this.rowData.length;
       this.paginateData();
       this.isLoading = false;
-    });
+    } catch (err) {
+      alert(err);
+    }
   }
 
   // -------------------- Pagination --------------------
 
   paginateData() {
-    const start = ((this.rowsPerPage * this.currentPage) - this.rowsPerPage) + 1;
-    const end = (this.rowsPerPage * this.currentPage) + 1;
+    const start = ((this.rowsPerPage * this.currentPage) - this.rowsPerPage);
+    const end = (this.rowsPerPage * this.currentPage);
     this.paginatedRowData = this.rowData.slice(start, end);
   }
 
@@ -86,5 +96,9 @@ export class TableComponent implements OnInit {
   goToNextPage() {
     this.currentPage++;
     this.paginateData();
+  }
+
+  postIdAndStatus(request: any) {
+    alert('You have successfully posted a status of "' + (request.status).toUpperCase() + '" for Row ID: ' + request.id);
   }
 }

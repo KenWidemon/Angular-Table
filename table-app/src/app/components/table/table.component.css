@@ -76,10 +76,6 @@ tfoot {
   word-wrap: break-word;
 }
 
-.scrollable tbody tr:hover {
-  cursor: pointer;
-}
-
 .scrollable tbody tr:hover td {
   color: #555;
 }
@@ -93,4 +89,25 @@ tfoot tr th {
 
 tfoot app-pagination {
   flex: 1 0 auto;
+}
+
+.row-btn {
+  padding: 5px;
+  color: #999;
+  font-size: 12px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  text-decoration: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.row-btn:hover {
+  color: #555;
+}
+
+.row-btn:active {
+  color: white;
+  background-color: hsl(263, 100%, 40%);
 }
