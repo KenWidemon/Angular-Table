@@ -1,19 +1,25 @@
 <div class="pagination">
-  <label for="rowCount">Row Count:</label>
-  <input
-    #rowCount
-    id="rowCount"
-    type="text"
-    placeholder="{{ rowsPerPage }}"
-    value=""
-    size="5"
-    (blur)="adjustRowCount(rowCount.value)"
-    (keyup.enter)="adjustRowCount(rowCount.value)">
+  <div class="row-count">
+    <label for="rowCount">Row Count:</label>
+    <input
+      #rowCount
+      id="rowCount"
+      type="text"
+      placeholder="{{ rowsPerPage }}"
+      value=""
+      size="1"
+      (blur)="adjustRowCount(rowCount.value)"
+      (keyup.enter)="adjustRowCount(rowCount.value)">
+  </div>
 
-  <!-- directly call the functions for realtime updates of the values -->
-  <span>{{ getMin() }} to {{ getMax() }} of {{ totalRowCount }}</span>
+  <div class="pages">
+    <!-- directly call the functions for realtime updates of the values -->
+    <span>{{ getMin() }} to {{ getMax() }} of {{ totalRowCount }}</span>
 
-  <button (click)="toPreviousPage()" [disabled]="currentPage === 1 || isLoading">&lsaquo;&lsaquo;</button>
-  <button *ngFor="let pageNum of getPages()" (click)="toPage(pageNum)">{{ pageNum }}</button>
-  <button (click)="toNextPage()" [disabled]="onLastPage() || isLoading">&rsaquo;&rsaquo;</button>
+    <div class="pagination-btns">
+      <button (click)="toPreviousPage()" [disabled]="currentPage === 1 || isLoading">&laquo;</button>
+      <button *ngFor="let pageNum of getPages()" (click)="toPage(pageNum)">{{ pageNum }}</button>
+      <button (click)="toNextPage()" [disabled]="onLastPage() || isLoading">&raquo;</button>
+    </div>
+  </div>
 </div>

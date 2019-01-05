@@ -1,1 +1,63 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+}
 
+.pagination div {
+  flex: 1 0 auto;
+}
+
+.pagination .row-count {
+  text-align: left;
+}
+
+.pagination .pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.pagination .row-count label {
+  padding-right: 5px;
+}
+
+.pagination .row-count input {
+  text-align: center;
+  font-size: 12px;
+}
+
+.pagination .pages span {
+  flex-basis: 100px;
+  padding-right: 5px;
+  text-align: right;
+}
+
+.pagination .pages .pagination-btns {
+  min-width: 184px;
+  max-width: 184px;
+  display: flex;
+  flex-direction: row;
+}
+
+.pagination .pages .pagination-btns button {
+  flex: 1;
+  padding: 2px;
+  color: #999;
+  font-size: 12px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pagination .pages .pagination-btns button:hover {
+  color: #555;
+}
+
+.pagination .pages .pagination-btns button:focus {
+  color: white;
+  outline: 0;
+  background-color: hsl(263, 100%, 40%);
+}

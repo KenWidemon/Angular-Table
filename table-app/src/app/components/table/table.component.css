@@ -1,10 +1,10 @@
 /* The table should be somewhat responsive */
 .table-container {
-  display: flex;
   width: 92vw;
   min-height: 40vh;
-  max-height: 70vh;
+  max-height: 97vh;
   margin: auto;
+  display: flex;
 }
 
 table {
@@ -34,7 +34,7 @@ th, td {
   border-collapse: collapse;
 }
 
-th {
+thead th {
   border-bottom: 2px solid hsl(263, 100%, 40%);
   text-transform: uppercase;
 }
@@ -89,5 +89,8 @@ tfoot tr th {
   flex: 1 0 auto;
   justify-content: center;
   display: flex;
-  flex-direction: row;
+}
+
+tfoot app-pagination {
+  flex: 1 0 auto;
 }
