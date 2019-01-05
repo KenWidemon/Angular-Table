@@ -2,7 +2,8 @@
 .table-container {
   display: flex;
   width: 92vw;
-  height: 70vh;
+  min-height: 40vh;
+  max-height: 70vh;
   margin: auto;
 }
 
@@ -39,7 +40,8 @@ th {
 }
 
 thead,
-tbody{
+tbody,
+tfoot {
   display: flex;
   flex-direction: column;
 }
@@ -80,4 +82,12 @@ tbody{
 
 .scrollable tbody tr:hover td {
   color: #555;
+}
+
+tfoot tr,
+tfoot tr th {
+  flex: 1 0 auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
 }

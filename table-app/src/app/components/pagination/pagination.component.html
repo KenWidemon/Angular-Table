@@ -1,12 +1,16 @@
 <div class="pagination">
+  <label for="rowCount">Row Count:</label>
   <input
     #rowCount
+    id="rowCount"
     type="text"
-    value="{{ rowsPerPage }}"
+    placeholder="{{ rowsPerPage }}"
+    value=""
     size="5"
     (blur)="adjustRowCount(rowCount.value)"
     (keyup.enter)="adjustRowCount(rowCount.value)">
 
+  <!-- directly call the functions for realtime updates of the values -->
   <span>{{ getMin() }} to {{ getMax() }} of {{ totalRowCount }}</span>
 
   <button (click)="toPreviousPage()" [disabled]="currentPage === 1 || isLoading">&lsaquo;&lsaquo;</button>
