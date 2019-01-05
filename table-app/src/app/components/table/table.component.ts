@@ -1,5 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { MockDataService } from 'src/app/common/services/mock-data.service';
+import { Mock } from 'protractor/built/driverProviders';
+
+interface MockData {
+  name: string;
+  phone: string;
+  email: string;
+  company: string;
+  date_entry: string;
+  org_num: string;
+  address_1: string;
+  city: string;
+  zip: string;
+  geo: string;
+  pan: string;
+  pin: string;
+  id: number;
+  status: string;
+  fee: string;
+  guid: string;
+  date_exit: string;
+  date_first: string;
+  date_recent: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-table',
@@ -9,7 +33,7 @@ import { MockDataService } from 'src/app/common/services/mock-data.service';
 export class TableComponent implements OnInit {
 
   // Table
-  rowData: any[];
+  rowData: MockData[];
   columns: string[];
 
   // Pagination
@@ -18,7 +42,7 @@ export class TableComponent implements OnInit {
   rowsPerPage = 25; // default of 25 rows
   pagesToShow = 5; // how many page options to show at a time
   isLoading = false; // whether the content currently loading
-  paginatedRowData: any[];
+  paginatedRowData: MockData[];
 
   constructor(private mockDataService: MockDataService) { }
 
@@ -28,7 +52,7 @@ export class TableComponent implements OnInit {
 
   getTableData() {
     this.isLoading = true;
-    this.mockDataService.getData().subscribe((data: any[]) => {
+    this.mockDataService.getData().subscribe((data: MockData[]) => {
       // we would only want to retrieve the columns once
       if (!this.columns) {
         this.columns = this.mockDataService.getColumns(data[0]);
@@ -45,12 +69,8 @@ export class TableComponent implements OnInit {
 
   paginateData() {
     const start = ((this.rowsPerPage * this.currentPage) - this.rowsPerPage) + 1;
-    console.log(start);
     const end = (this.rowsPerPage * this.currentPage) + 1;
-    console.log(end);
     this.paginatedRowData = this.rowData.slice(start, end);
-    console.log(this.paginatedRowData);
-    console.log(this.rowData);
   }
 
   goToPage(pageNum: number) {

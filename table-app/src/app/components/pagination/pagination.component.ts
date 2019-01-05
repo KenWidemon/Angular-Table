@@ -70,8 +70,12 @@ export class PaginationComponent implements OnInit {
     return pages;
   }
 
-  adjustRowCount(count: number) {
-    this.rowsPerPage = count || this.totalRowCount;
+  adjustRowCount(count: any) {
+    // avoid fetching data for zero or null values
+    const parse = parseInt(count, 10);
+    if (parse > 0) {
+      this.rowsPerPage = parse;
+    }
     this.rowsPerPageChange.emit(this.rowsPerPage);
   }
 
