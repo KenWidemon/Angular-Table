@@ -56,8 +56,8 @@ export class TableComponent implements OnInit {
       this.isLoading = true;
       const tableData = await this.mockDataService.getData();
       tableData.map((obj: MockData) => {
-        const button = { id: obj.id, status: obj.status };
-        obj.button = button;
+        const btnJSON = { 'id': obj.id, 'status': obj.status };
+        obj.button = btnJSON;
         return obj;
       });
 
@@ -100,8 +100,13 @@ export class TableComponent implements OnInit {
 
   postIdAndStatus(request: any) {
     this.mockDataService.postStatus(request)
-      .subscribe(() => {
-        return;
-      });
+      .subscribe(
+        (res) => {
+          alert('Your POST request was successful.');
+        },
+        (err) => {
+          console.warn(err);
+        }
+      );
   }
 }

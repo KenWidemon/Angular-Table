@@ -1,4 +1,16 @@
 /* The table should be somewhat responsive */
+.loading {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-top: -25px;
+  color: #999;
+  text-align: center;
+}
+
 .table-container {
   width: 92vw;
   min-height: 40vh;
