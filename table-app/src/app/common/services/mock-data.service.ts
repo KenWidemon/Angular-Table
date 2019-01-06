@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root' // no need to import in Providers[] in AppModule
@@ -21,6 +22,11 @@ export class MockDataService {
   }
 
   postStatus(request: any): Observable<any> {
-    return this.http.post<any>(this.mockDataUrl, request); // no data is actually returned; this is just a simulation
+    // this doesn't return any data; this is just a simulation
+    return this.http.post<any>(this.mockDataUrl, request)
+      .pipe(
+        // look at the values and use them to alert the user
+        tap(_ => alert('You have successfully posted a status of "' + (request.status).toUpperCase() + '" for Row ID: ' + request.id))
+      );
   }
 }

@@ -101,7 +101,7 @@ export class TableComponent implements OnInit {
   postIdAndStatus(request: any) {
     this.mockDataService.postStatus(request)
       .subscribe(() => {
-        alert('You have successfully posted a status of "' + (request.status).toUpperCase() + '" for Row ID: ' + request.id);
+        return;
       });
   }
 }
