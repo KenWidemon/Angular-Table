@@ -16,4 +16,4 @@ I don't have any unit tests created for this project. Test Driven Development is
 
 ## Note
 
-I managed to get everything done that was listed in the "High Level Specifications" section, and my code is well-commented to avoid confusion.
+I managed to get everything done that was listed in the "High Level Specifications" section, and my code is well-commented to avoid confusion. If you are using a different dataset, it will need to be formatted the same as `app/common/constants/mock-data.constant.ts`. I edited the original dataset from JSON format to an array constant.
