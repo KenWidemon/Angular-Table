@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 export class MockDataService {
 
   private mockDataUrl = 'api/mockData';
+  private submitUrl = 'api/submit';
 
   constructor(private http: HttpClient) {}
 
@@ -23,7 +24,7 @@ export class MockDataService {
 
   postStatus(request: any): Observable<any> {
     // this doesn't return any data; this is just a simulation
-    return this.http.post<any>(this.mockDataUrl, request)
+    return this.http.post<any>(this.submitUrl, request)
       .pipe(
         // look at the values and use them to alert the user
         tap(_ => alert('You have successfully posted a status of "' + (request.status).toUpperCase() + '" for Row ID: ' + request.id))

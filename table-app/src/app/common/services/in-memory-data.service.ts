@@ -13,6 +13,14 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const mockData = MOCK_DATA;
 
-    return { mockData };
+    // just so we have a fake endpoint for the specific url
+    const submit = mockData.map((obj) => {
+      return {
+        id: obj.id,
+        status: obj.status
+      };
+    });
+
+    return { mockData, submit };
   }
 }
