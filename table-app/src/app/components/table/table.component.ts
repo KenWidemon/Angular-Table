@@ -23,7 +23,7 @@ interface MockData {
   date_first: string;
   date_recent: string;
   url: string;
-  [key: string]: any;
+  [key: string]: any; // this will allow us to add unknown properties to our objects
 }
 
 @Component({
@@ -39,10 +39,10 @@ export class TableComponent implements OnInit {
 
   // Pagination
   currentPage = 1; // load the 1st page by default
-  totalRowCount = 0;
-  rowsPerPage = 25; // default of 25 rows
+  totalRowCount = 0; // total number of possible rows
+  rowsPerPage = 25; // default of 25 rows to show per page
   pagesToShow = 5; // how many page options to show at a time
-  isLoading = false; // whether the content currently loading
+  isLoading = false; // controls whether to show the loading overlay when the table is reloaded
   paginatedRowData: MockData[];
 
   constructor(private mockDataService: MockDataService) { }
@@ -51,23 +51,29 @@ export class TableComponent implements OnInit {
     this.getTableData();
   }
 
+  // async/await for proper data retrieval and readability
   async getTableData() {
     try {
       this.isLoading = true;
-      const tableData = await this.mockDataService.getData();
+      const tableData = await this.mockDataService.getData(); // get data as a Promise
+
+      // add JSON data for button click to each row
+      // this will also control whether a button is shown or not
       tableData.map((obj: MockData) => {
         const btnJSON = { 'id': obj.id, 'status': obj.status };
         obj.button = btnJSON;
         return obj;
       });
 
-      // we would only want to retrieve the columns once
+      // only retrieve the columns once
       if (!this.columns) {
         this.columns = this.mockDataService.getColumns(tableData[0]);
       }
 
       this.rowData = tableData;
       this.totalRowCount = this.rowData.length;
+
+      // set the initial pagination
       this.paginateData();
       this.isLoading = false;
     } catch (err) {
@@ -80,7 +86,7 @@ export class TableComponent implements OnInit {
   paginateData() {
     const start = ((this.rowsPerPage * this.currentPage) - this.rowsPerPage);
     const end = (this.rowsPerPage * this.currentPage);
-    this.paginatedRowData = this.rowData.slice(start, end);
+    this.paginatedRowData = this.rowData.slice(start, end); // just use the data we have instead of making several API calls
   }
 
   goToPage(pageNum: number) {
@@ -98,7 +104,9 @@ export class TableComponent implements OnInit {
     this.paginateData();
   }
 
+  // button click
   postIdAndStatus(request: any) {
+    // request is the JSON object attached to the button
     this.mockDataService.postStatus(request)
       .subscribe(
         (res) => {

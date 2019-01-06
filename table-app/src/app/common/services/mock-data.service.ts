@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root' // no need to import in Providers[] in AppModule
+  providedIn: 'root' // no need to import in AppModule
 })
 export class MockDataService {
 
@@ -23,7 +22,7 @@ export class MockDataService {
   }
 
   postStatus(request: any): Observable<any> {
-    // this doesn't return any data; this is just a simulation
+    // this will reach our fake http endpoint and send back a JSON object with id and status
     return this.http.post<any>(this.submitUrl, request);
   }
 }

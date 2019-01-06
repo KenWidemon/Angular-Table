@@ -7,13 +7,13 @@ import { MOCK_DATA } from '../constants/mock-data.constant';
 })
 export class InMemoryDataService implements InMemoryDbService {
   /*
-    * This is our fake http endpoint. Our MockDataService will receive mock data from here
+    * This is my fake http endpoint. The MockDataService will receive mock data from here
       instead of directly accessing the MOCK_DATA constant.
   */
   createDb() {
     const mockData = MOCK_DATA;
 
-    // just so we have a fake endpoint for the submit url
+    // just so we have a fake endpoint for "api/submit"
     const submit = [];
 
     return { mockData, submit };

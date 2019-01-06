@@ -1,4 +1,5 @@
 /* The table should be somewhat responsive */
+
 .loading {
   display: flex;
   align-items: center;
@@ -73,7 +74,7 @@ tfoot {
   overflow: auto;
 }
 
-/* Fixed header at the "top" of the table */
+/* fixed header at the "top" of the table */
 .scrollable thead {
   position: sticky;
   top: 0;

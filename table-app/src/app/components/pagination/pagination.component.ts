@@ -8,13 +8,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PaginationComponent implements OnInit {
 
   @Input() currentPage: number;
-  @Input() totalRowCount: number;
+  @Input() totalRowCount: number; // total number of possible rows
   @Input() rowsPerPage: number;
   @Input() pagesToShow: number; // how many page options to show at a time
-  @Input() isLoading: boolean; // whether the content currently loading
+  @Input() isLoading: boolean; // controls disabling of buttons
 
   // Callbacks
-  @Output() rowsPerPageChange = new EventEmitter<number>();
+  @Output() rowsPerPageChange = new EventEmitter<number>(); // emit the new row count after user updates via the input field
   @Output() goToPage = new EventEmitter<number>();
   @Output() previousPage = new EventEmitter<boolean>();
   @Output() nextPage = new EventEmitter<boolean>();
