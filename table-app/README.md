@@ -9,11 +9,3 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-I don't have any unit tests created for this project. Test Driven Development isn't currently a process that my team uses (even though we definitely benefit from it), and so I haven't looked too far into unit testing with Angular.
-
-## Note
-
-I managed to get everything done that was listed in the "High Level Specifications" section, and my code is well-commented to avoid confusion. If you are using a different dataset, it will need to be formatted the same as `app/common/constants/mock-data.constant.ts`. I edited the original dataset from JSON format to an array constant.
