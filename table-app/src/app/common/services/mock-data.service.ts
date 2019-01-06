@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
-import { MOCK_DATA } from '../constants/mock-data.constant';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root' // no need to import in Providers[] in AppModule
 })
 export class MockDataService {
 
-  constructor() {}
+  private mockDataUrl = 'api/mockData';
+
+  constructor(private http: HttpClient) {}
 
   getData(): Promise<any[]> {
-    // create a fake response since we don't have an http endpoint
-    return new Promise((resolve) => {
-      resolve(MOCK_DATA);
-    });
+    // this will reach our fake http endpoint
+    return this.http.get<any[]>(this.mockDataUrl).toPromise();
   }
 
   getColumns(data: any): string[] {
     return Object.keys(data); // just set columns equal to first row's keys
+  }
+
+  postStatus(request: any): Observable<any> {
+    return this.http.post<any>(this.mockDataUrl, request); // no data is actually returned; this is just a simulation
   }
 }

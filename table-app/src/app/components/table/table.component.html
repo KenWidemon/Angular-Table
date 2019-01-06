@@ -1,4 +1,6 @@
-<div class="table-container">
+<div *ngIf="isLoading">Loading...</div>
+
+<div *ngIf="!isLoading" class="table-container">
   <!-- Only using table element here for semantics -->
   <table>
     <caption>Angular Table App</caption>
