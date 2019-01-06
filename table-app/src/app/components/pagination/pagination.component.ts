@@ -19,9 +19,13 @@ export class PaginationComponent implements OnInit {
   @Output() previousPage = new EventEmitter<boolean>();
   @Output() nextPage = new EventEmitter<boolean>();
 
+  defaultRowsPerPage: number;
+
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.defaultRowsPerPage = this.rowsPerPage;
+  }
 
   getMin(): number {
     return (((this.rowsPerPage * this.currentPage) - this.rowsPerPage) + 1);
@@ -73,10 +77,15 @@ export class PaginationComponent implements OnInit {
   adjustRowCount(count: any) {
     // avoid fetching data for zero or null values
     const parse = parseInt(count, 10);
-    if (parse > 0) {
+
+    if (parse > 0 && parse <= this.totalRowCount) {
       this.rowsPerPage = parse;
+    } else {
+      this.rowsPerPage = this.defaultRowsPerPage;
     }
+
     this.rowsPerPageChange.emit(this.rowsPerPage);
+    this.toPage(1);
   }
 
   toPage(pageNum: number) {
